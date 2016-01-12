@@ -37,9 +37,9 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.episode_details);
         mNetworkManager = NetworkManager.getInstance();
 
-
+        // Initializsng views
         initViews();
-
+        // fetching episode details Api
         fetchepisodeDetails();
 
     }

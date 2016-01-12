@@ -32,6 +32,7 @@ public class EpisodeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.episode_list);
 
+        // initializing list view and episode list adapter
         mEpisodesListView = (ListView) findViewById(R.id.episode_list);
         mEpisodeListAdapter = new EpisodeListAdapter();
         mEpisodesListView.setAdapter(mEpisodeListAdapter);
@@ -46,6 +47,7 @@ public class EpisodeListActivity extends AppCompatActivity {
             }
         });
 
+        // fetching episode list
         fetchEpisodes();
 
     }
