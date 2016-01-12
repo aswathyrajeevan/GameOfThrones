@@ -2,6 +2,7 @@ package com.android.gameofthrones.activities;
 
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,12 +33,15 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
         if (extras != null) {
             mImdbID = extras.getString("imdbID");
         }
+
         setContentView(R.layout.episode_details);
         mNetworkManager = NetworkManager.getInstance();
+
 
         initViews();
 
         fetchepisodeDetails();
+
     }
 
     private void fetchepisodeDetails() {
@@ -68,6 +72,10 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
     }
 
     private void setUpViews(EpisodeDetails episodeDetails) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(episodeDetails.getTitle());
+        actionBar.show();
+        
         mYearTV.setText(Integer.toString(episodeDetails.getYear()));
         mRatedTV.setText(episodeDetails.getRated());
         mRleasedTV.setText(episodeDetails.getReleased());
