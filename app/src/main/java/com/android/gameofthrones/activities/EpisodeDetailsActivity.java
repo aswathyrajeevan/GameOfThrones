@@ -75,7 +75,7 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(episodeDetails.getTitle());
         actionBar.show();
-        
+
         mYearTV.setText(Integer.toString(episodeDetails.getYear()));
         mRatedTV.setText(episodeDetails.getRated());
         mRleasedTV.setText(episodeDetails.getReleased());

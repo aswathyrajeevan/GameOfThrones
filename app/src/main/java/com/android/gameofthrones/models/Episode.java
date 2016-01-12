@@ -3,7 +3,7 @@ package com.android.gameofthrones.models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by aswathyragesh on 1/10/16.
+ * Created by aswathyragesh on 1/11/16.
  */
 public class Episode {
 
