@@ -51,7 +51,6 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
             public void onComplete(Object result) {
                 mEpisodeDetails = (EpisodeDetails) result;
                 setUpViews(mEpisodeDetails);
-
             }
 
             @Override
