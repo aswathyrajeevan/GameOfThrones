@@ -60,7 +60,7 @@ public class NetworkManager {
         episodeDetailsCall.enqueue(new Callback<EpisodeDetails>() {
             @Override
             public void onResponse(Response<EpisodeDetails> response) {
-                listener.onComplete(response);
+                listener.onComplete(response.body());
             }
 
             @Override

@@ -1,34 +1,79 @@
 package com.android.gameofthrones.activities;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.gameofthrones.R;
+import com.android.gameofthrones.api.NetworkManager;
 import com.android.gameofthrones.models.EpisodeDetails;
-
-import org.json.JSONException;
-
-import java.io.IOException;
 
 public class EpisodeDetailsActivity extends AppCompatActivity {
 
-    private ProgressDialog progressDialog;
-    private String imdbID;
+    private String mImdbID;
+    private TextView mYearTV;
+    private TextView mRatedTV;
+    private TextView mRleasedTV;
+    private TextView mSeasonTV;
+    private TextView mEpisodeTV;
+    private TextView mRunTimeTV;
+    private NetworkManager mNetworkManager;
+
+    EpisodeDetails mEpisodeDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            imdbID = extras.getString("imdbID");
+            mImdbID = extras.getString("imdbID");
         }
         setContentView(R.layout.episode_details);
+        mNetworkManager = NetworkManager.getInstance();
 
+        initViews();
+
+        fetchepisodeDetails();
+    }
+
+    private void fetchepisodeDetails() {
+
+        mNetworkManager.getEpisodeDetails(new NetworkManager.ApiResultListener() {
+            @Override
+            public void onComplete(Object result) {
+                mEpisodeDetails = (EpisodeDetails) result;
+                setUpViews(mEpisodeDetails);
+
+            }
+
+            @Override
+            public void onError() {
+                Toast.makeText(EpisodeDetailsActivity.this, "Oops, something went wrong!!", Toast.LENGTH_SHORT).show();
+            }
+        }, mImdbID);
+    }
+
+
+    private void initViews() {
+        mYearTV = (TextView) findViewById(R.id.year_text);
+        mRatedTV = (TextView) findViewById(R.id.rated_text);
+        mRleasedTV = (TextView) findViewById(R.id.released_text);
+        mSeasonTV = (TextView) findViewById(R.id.season_text);
+        mEpisodeTV = (TextView) findViewById(R.id.episode_text);
+        mRunTimeTV = (TextView) findViewById(R.id.runtime_text);
+    }
+
+    private void setUpViews(EpisodeDetails episodeDetails) {
+        mYearTV.setText(Integer.toString(episodeDetails.getYear()));
+        mRatedTV.setText(episodeDetails.getRated());
+        mRleasedTV.setText(episodeDetails.getReleased());
+        mSeasonTV.setText(Integer.toString(episodeDetails.getSeason()));
+        mEpisodeTV.setText(Integer.toString(episodeDetails.getEpisode()));
+        mRunTimeTV.setText(episodeDetails.getRunTime());
     }
 
     @Override
@@ -52,7 +97,5 @@ public class EpisodeDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }

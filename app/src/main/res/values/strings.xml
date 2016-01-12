@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">Game Of Thrones</string>
 
+    <string name="baseURL">http://www.omdbapi.com</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="sample_text">New Text</string>
     <string name="title_activity_gtepisode_details">GTEpisodeDetailsActivity</string>
+    <string name="text_year">Year</string>
+    <string name="text_rated">Rated</string>
+    <string name="text_released">Released</string>
+    <string name="text_season">Season</string>
+    <string name="text_episode">Episode</string>
+    <string name="text_runtime">Runtime</string>
 </resources>

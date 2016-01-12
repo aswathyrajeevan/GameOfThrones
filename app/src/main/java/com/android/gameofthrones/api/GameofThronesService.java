@@ -4,10 +4,8 @@ import com.android.gameofthrones.models.EpisodeDetails;
 import com.android.gameofthrones.models.Episode;
 import com.android.gameofthrones.models.GameOfThrones;
 
-import java.util.ArrayList;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -21,6 +19,6 @@ public interface GameofThronesService {
 
     @GET("/")
     Call<EpisodeDetails> getEpisodeDetails(@Query("i") String imdbId,
-                           @Query("plot") String plot,
-                           @Query("r") String response);
+                                           @Query("plot") String plot,
+                                           @Query("r") String response);
 }
